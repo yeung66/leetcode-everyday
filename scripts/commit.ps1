@@ -14,5 +14,8 @@ git diff head | ForEach-Object {
     }
 }
 
-git commit -m "solve $count problems at $(Get-Date)"
-git push origin master
+if ($count -gt 0) {
+    git commit -m "solve $count problems at $(Get-Date)"
+    git push origin master
+}
+

@@ -1,16 +1,16 @@
 /*
- * @lc app=leetcode.cn id=278 lang=javascript
+ * @lc app=leetcode.cn id=278 lang=java
  *
  * [278] 第一个错误的版本
  *
  * https://leetcode-cn.com/problems/first-bad-version/description/
  *
  * algorithms
- * Easy (42.74%)
- * Likes:    270
+ * Easy (43.31%)
+ * Likes:    328
  * Dislikes: 0
- * Total Accepted:    87.6K
- * Total Submissions: 204.9K
+ * Total Accepted:    110.2K
+ * Total Submissions: 248.2K
  * Testcase Example:  '5\n4'
  *
  * 
@@ -34,39 +34,23 @@
  */
 
 // @lc code=start
-/**
- * Definition for isBadVersion()
- * 
- * @param {integer} version number
- * @return {boolean} whether the version is bad
- * isBadVersion = function(version) {
- *     ...
- * };
- */
+/* The isBadVersion API is defined in the parent class VersionControl.
+      boolean isBadVersion(int version); */
 
-/**
- * @param {function} isBadVersion()
- * @return {function}
- */
-var solution = function(isBadVersion) {
-    /**
-     * @param {integer} n Total versions
-     * @return {integer} The first bad version
-     */
-    return function(n) {
-        let l=1, r=n
-        let mid 
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        int l=1, r=n;
         while(l<r) {
-            mid = Math.floor((l+r)/2)
+            int mid = (r-l) / 2 + l;
             if(isBadVersion(mid)) {
-                r = mid
+                r = mid;
             } else {
-                l = mid + 1
+                l = mid + 1;
             }
         }
-
-        return l
-    };
-};
+        return l;
+    }
+    
+}
 // @lc code=end
 

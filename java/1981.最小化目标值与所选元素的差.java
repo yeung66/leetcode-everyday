@@ -1,3 +1,5 @@
+import java.util.*;
+
 /*
  * @lc app=leetcode.cn id=1981 lang=java
  *
@@ -79,29 +81,22 @@
 // @lc code=start
 class Solution {
     public int minimizeTheDifference(int[][] mat, int target) {
-        int MAX = 4900;
-        boolean[][] dp = new boolean[mat.length + 1][MAX + 1];
-
-        for (var x : mat[0]) {
-            dp[0][x] = true;
+        int m = mat.length, n = mat[0].length, ans = Integer.MAX_VALUE;
+        boolean[] f = new boolean[m * 70 + 1];
+        f[0] = true;
+        for (int i = 0; i < m; ++i) {
+            boolean[] g = new boolean[m * 70 + 1];
+            for (int j = 0; j < n; ++j)
+                for (int sum = (i + 1) * 70; sum >= mat[i][j]; --sum)
+                    g[sum] |= f[sum - mat[i][j]];
+            f = g;
         }
-
-        for (var i = 1; i <= mat.length; i++) {
-            for(var x:mat[i]) {
-                for(var j=x;j<=MAX;j++) {
-                    dp[i][j] |= dp[i - 1][j - x];
-                }
-            }
-        }
-        
-        for (var i = 0; target - i >= 0 || target + i <= MAX; i++) {
-            if (target - i >= 0 && dp[mat.length][target - i])
-                return target - i;
-            if (target + i <= MAX && dp[mat.length][target + i])
-                return i - target;
-        }
-        return 0;
+        for (int sum = m * 70; sum >= 0; --sum)
+            if (f[sum])
+                ans = Math.min(ans, Math.abs(sum - target));
+        return ans;
     }
+
 }
 // @lc code=end
 

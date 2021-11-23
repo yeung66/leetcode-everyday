@@ -140,7 +140,6 @@
  * @return {number}
  */
 var longestCommonSubsequence = function (text1, text2) {
-  if (text1.length < text2.length) [text1, text2] = [text2, text1];
   const m = text1.length,
     n = text2.length;
   const dp = (new Array(m+1).fill(0)).map(_=>new Array(n+1).fill(0));
@@ -156,6 +155,6 @@ var longestCommonSubsequence = function (text1, text2) {
     }
   }
 
-  return Math.max(dp[m][n])
+  return dp[m][n];
 };
 // @lc code=end

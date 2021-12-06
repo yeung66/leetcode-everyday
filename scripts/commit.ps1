@@ -1,6 +1,8 @@
 
 Set-Location C:\codes\py\leetcode-everyday
 
+git pull origin master
+
 pwsh .\scripts\classify.ps1
 
 git add .

@@ -3,7 +3,8 @@ $files = Get-ChildItem
 
 foreach($f in $files){
     $ex = $f.Extension
-    if($ex){
+    $exclude = ".idea", ".gitignore", ".iml"
+    if($ex -and ($exclude -notcontains $ex)){
         $ex = $ex.Substring(1)
         if(!(Test-Path $ex)) {New-Item $ex -ItemType Directory}
         $name = $f.Name

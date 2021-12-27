@@ -63,10 +63,7 @@ class Solution {
             for (int j = 0; j < i; j++) {
                 var word2 = words[j];
                 if (isPrev(word2, word1)) {
-                    
                     dp[i] = Math.max(dp[i], dp[j] + 1);
-                    System.out.printf("%s %s \n", word1, word2);
-                    System.out.printf("%d %d %d\n", i, j, dp[i]);
                 }
             }
 

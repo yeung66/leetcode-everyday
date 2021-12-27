@@ -50,20 +50,42 @@
 // @lc code=start
 class Solution {
     public int findTargetSumWays(int[] nums, int S) {
-        int n = nums.length;
-        int[][] dp = new int[n][2001];
-        dp[0][1000 + nums[0]] += 1;
-        dp[0][1000 - nums[0]] += 1;
-        for (int i = 1; i < n; i++) {
-            for (int j = 0; j < 2001; j++) {
-                if (dp[i - 1][j] > 0) {
-                    dp[i][j + nums[i]] += dp[i - 1][j];
-                    dp[i][j - nums[i]] += dp[i - 1][j];
+        // int n = nums.length;
+        // int[][] dp = new int[n][2001];
+        // dp[0][1000 + nums[0]] += 1;
+        // dp[0][1000 - nums[0]] += 1;
+        // for (int i = 1; i < n; i++) {
+        //     for (int j = 0; j < 2001; j++) {
+        //         if (dp[i - 1][j] > 0) {
+        //             dp[i][j + nums[i]] += dp[i - 1][j];
+        //             dp[i][j - nums[i]] += dp[i - 1][j];
+        //         }
+        //     }
+        // }
+
+        // return dp[n - 1][1000 + S];
+
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        int diff = sum - S;
+        if (diff < 0 || diff % 2 != 0) {
+            return 0;
+        }
+        int n = nums.length, neg = diff / 2;
+        int[][] dp = new int[n + 1][neg + 1];
+        dp[0][0] = 1;
+        for (int i = 1; i <= n; i++) {
+            int num = nums[i - 1];
+            for (int j = 0; j <= neg; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (j >= num) {
+                    dp[i][j] += dp[i - 1][j - num];
                 }
             }
         }
-
-        return dp[n - 1][1000 + S];
+        return dp[n][neg];
     }
 }
 // @lc code=end

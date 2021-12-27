@@ -99,7 +99,7 @@ class Solution {
             dp[i] |= words.contains(s.substring(0, i));
             
             for (int j = 0; j < i; j++) {
-                dp[i] |= dp[j] && words.contains(s.substring(j + 1, i));
+                dp[i] |= dp[j] && words.contains(s.substring(j, i));
             }
         }
 

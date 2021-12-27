@@ -40,25 +40,21 @@ class Solution {
         int n = nums.length;
         int ans = nums[0];
 
-        System.out.printf("%d %d\n", prevPosProduct, prevNegProduct);
         for (int i = 1; i < n; i++) {
             int curPosProduct, curNegProduct;
-            curPosProduct = Math.max(nums[i], prevPosProduct * nums[i]);
-            curNegProduct = Math.min(nums[i], prevPosProduct * nums[i]);
-            // if (nums[i] >= 0) {
-            //     curPosProduct = Math.max(nums[i], prevPosProduct * nums[i]);
-            //     curNegProduct = prevNegProduct * nums[i];
-            // } else {
-            //     curPosProduct = prevNegProduct * nums[i];
-            //     curNegProduct = Math.min(nums[i], prevPosProduct * nums[i]);
-            // }
+            if (nums[i] >= 0) {
+                curPosProduct = Math.max(nums[i], prevPosProduct * nums[i]);
+                curNegProduct = prevNegProduct * nums[i];
+            } else {
+                curPosProduct = prevNegProduct * nums[i];
+                curNegProduct = Math.min(nums[i], prevPosProduct * nums[i]);
+            }
 
             prevNegProduct = curNegProduct;
             prevPosProduct = curPosProduct;
 
             ans = Math.max(prevPosProduct, ans);
 
-            System.out.printf("%d %d\n", prevPosProduct, prevNegProduct);
         }
 
         return ans;

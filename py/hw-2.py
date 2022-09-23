@@ -1,7 +1,7 @@
 
 # If you need to import additional packages or classes, please import here.
 # 从起点 2 出发到终点 3 所需要的最少时间
-# 1 是墙，3 是陷阱，需要 3 个时间，6 是炸弹可以炸掉附近的墙
+# 1 是墙，4 是陷阱，需要 3 个时间，6 是炸弹可以炸掉附近的墙
 
 def func():
 
@@ -22,8 +22,16 @@ def func():
     def dfs(point, steps):
         nonlocal ans
         # print(point, steps)
+
         if point == end:
             ans = min(ans, steps)
+            return
+
+        # 可以剪枝
+        if steps >= ans: 
+            return 
+
+        if steps + abs(end[1]-start[1]) + abs(end[0]-start[0]) >= ans:
             return
 
         for dx, dy in directions:

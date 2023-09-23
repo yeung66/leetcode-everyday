@@ -1,6 +1,9 @@
+#!/usr/bin/env dotnet fsi
 open System.IO
 
 let mutable count = 0
+let PATH = "/Users/scott/codes/leetcode-everyday"
+Directory.SetCurrentDirectory(PATH)
 
 
 // read files of current directory

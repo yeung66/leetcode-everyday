@@ -12,10 +12,10 @@ Directory.GetFiles(Directory.GetCurrentDirectory())
     // filter out files that are not directories
     not (File.GetAttributes(f).HasFlag(FileAttributes.Directory))
 )
-|> Array.filter (fun f -> not (f.EndsWith(".idea") || f.EndsWith(".gitignore") || f.EndsWith(".iml")))
+|> Array.filter (fun f -> not (f.EndsWith(".idea") || f.EndsWith(".gitignore") || f.EndsWith(".iml") || f.EndsWith("DS_Store")))
 |> Array.iter (fun f -> 
     // fetch the file extension
-    let ext = Path.GetExtension(f)
+    let ext = Path.GetExtension(f).Substring(1)
     
     // if not directory called ext exists, create it
     if not (Directory.Exists(ext)) then

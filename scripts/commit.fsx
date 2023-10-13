@@ -45,5 +45,5 @@ let run cmd args =
 let now = System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
 
 run "git" "add ."
-run "git" $"commit -m \"commit\" -m \"solve {count} problem at {now}\""
+run "git" $"commit -m \"solve {count} problem at {now}\""
 run "git" "push origin master"

@@ -35,7 +35,7 @@ if count = 0 then
 printfn "Commit %d files" count
 
 // run external command
-let run cmd args =
+let run (cmd: string) (args: string) =
     let psi = new System.Diagnostics.ProcessStartInfo(cmd, args)
     psi.RedirectStandardOutput <- true
     psi.UseShellExecute <- false

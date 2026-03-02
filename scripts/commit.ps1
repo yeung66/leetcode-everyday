@@ -1,5 +1,5 @@
 
-Set-Location C:\codes\py\leetcode-everyday
+Set-Location C:\Users\40728\codes\leetcode-everyday
 
 git pull origin master
 
